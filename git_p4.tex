@@ -1,0 +1,323 @@
+\documentclass{beamer}
+% \setbeameroption{show notes}
+
+\usepackage[utf8x]{inputenc}
+\usepackage{ulem} % strike through
+
+\usetheme{Darmstadt}
+
+\title {Every day usage of Git}
+\subtitle{with/without Perforce}
+\author{Dénes Mátételki}
+\institute{www.emerson.com}
+\date{October 18, 2013}
+
+\begin{document}
+
+%----------- slide --------------------------------------------------%
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\begin{frame}
+\frametitle{Table of contents}
+\tableofcontents
+\end{frame}
+
+
+%----------- slide --------------------------------------------------%
+
+\section{Introduction}
+
+\begin{frame}{The scope}
+
+\begin{block}{About this presentation}
+\begin{itemize}
+ \item Summarize main advantages of git over other version control systems (SVN, perforce).
+ \item Present the most usual, every day process of working with git.
+ \item Short summary of how git can work on a perforce system.
+ \item No technical depth of git details (non-programmer friendly).
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\subsection{History}
+
+\begin{frame}{Short history of Git}
+
+\begin{block}{History}
+\begin{itemize}
+ \item Initially designed and developed by Linus Torvalds for Linux kernel development in 2005.
+ \item The name is a British English slang roughly equivalent to "unpleasant person".
+ \item Free and open source. (GNU GPLv2)
+\end{itemize}
+\end{block}
+
+\begin{block}{Project goals}
+\begin{itemize}
+ \item Patches to take 3 seconds.
+ \item Support a distributed workflow.
+ \item Very strong safeguards against corruption.
+ \item Performance.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\subsection{Comparison}
+
+\begin{frame}{Comparing Git to other VCSs}
+
+\begin{block}{Advantages}
+\begin{itemize}
+ \item Distributed (offline work, everyone is a full backup).
+ \item Very fast (work local files, advanced algorithms).
+ \item Small (30x than Subversion).
+ \item Lightweight branches (easy branching, merging).
+ \item Flexible, great tools (There is more than one way to do it).
+\end{itemize}
+\end{block}
+
+\begin{block}{Disadvantages}
+\begin{itemize}
+ \item Difficult to learn due to complexity.
+ \item Revisions don't have version numbers.
+ \item \sout{Lacks good GUI tools.}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\section{Every day workflow}
+
+\subsection{Collaboration}
+
+\begin{frame}{Every day git - collaboration}
+
+\begin{block}{Workflow}
+\begin{itemize}
+ \item Update from remote, solve conflicts.
+ \item Change local files.
+ \item View changes.
+ \item Adding them to a changeset.
+ \item Create local commit.
+ \item Submit local commits to remote.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\subsection{Love wolf}
+
+\begin{frame}{Every day git 2 - lone wolf}
+
+\begin{block}{Workflow}
+\begin{itemize}
+ \item Turn a directory into a Git repository.
+ \item Change local files.
+ \item View changes.
+ \item Adding them to a changeset.
+ \item Create local commit.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\subsection{With perforce}
+
+\begin{frame}{Git with perforce}
+
+\begin{block}{Git has bridges to most other VCS}
+\begin{itemize}
+ \item Git repository created from perforce. (separate directory)
+ \item Update git from perforce.
+ \item Work on git repository (no explicit file checkout).
+ \item Submit git commits to perforce.
+ \item Commit description can contain defect number and commit can be linked.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\section{Usage}
+
+\subsection{History}
+
+\begin{frame}{View history}
+
+\begin{center}
+ \includegraphics[height=4cm]{taken.jpg}
+\end{center}
+
+\begin{block}{Why? When? By whom?}
+\begin{itemize}
+ \item View graph of branches.
+ \item Search inside of commits.
+ \item View changes bentween (ranges of) revisions.
+ \item File history.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\subsection{Changes}
+
+\begin{frame}{The buckets}
+
+\begin{block}{Git tracks not files but content}
+\begin{enumerate}
+ \item Untracked files (easily clean them up).
+ \item Working tree. (view history).
+ \item Changes on local files (list of modified files, diffs).
+ \item Staging area for commints. (add diffs, add/remove files).
+ \item Local commits (can be edited, reverted).
+ \item Remote commits (1984 - Ministry of Truht: don't mess up others' timeline).
+\end{enumerate}
+\end{block}
+ 
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\begin{frame}{Handy tools}
+
+\begin{block}{Stash}
+\begin{itemize}
+ \item Need to switch branches without abandoning or commiting half-done changes.
+ \item The changes of local files can be saved as a patches on stash.
+ \item The working directory will be clean (before merge, etc)
+%  \item Stash content has no parent ( work across branches and commits )
+\end{itemize}
+\end{block}
+
+\begin{block}{Sending the patch to each other without a central server.}
+\begin{itemize}
+ \item Local state (diff) can be exported as patch (can be attached to e-mail, or copied from a pendrive).
+\end{itemize}
+\end{block}
+
+\begin{block}{Taking ownership of patches.}
+\begin{itemize}
+ \item Patches can applied as commits (by a ``maintainer``).
+ \item Cherry pick: apply a commits (from other branches) on current branch.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\subsection{Branches}
+
+\begin{frame}{Branches}
+
+\begin{block}{Need to switch branches without abandoning or commiting half-done changes.}
+\begin{itemize}
+ \item Switching between branches and commits are very fast (history stored locally, branches are very lightweight)
+ \item Quick, effortless local branch creation for each task or feature.
+ \item Easy merges and rebases  smart algorithms)
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\begin{frame}{Advanced}
+
+\begin{block}{Bisect}
+\begin{itemize}
+ \item Binary search for the commit which introduced a bug.
+ \item Marking the last known good state.
+ \item Marking a commit known to be broken.
+ \item Git selects a commit in the middle, which can be marked again either good or bad.
+\end{itemize}
+\end{block}
+
+\begin{block}{Subtrees and submodules}
+\begin{itemize}
+  \item Part of the repositoty is a link to another repository.
+  \item Pulling the changes of the ( maybe 3rd party ) subsystem.
+  \item Having access to the history of the subsystem.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\section{Final thoughts}
+
+\subsection{If I were a sales person}
+
+\begin{frame}{Step right up, step rigth up...}
+
+\begin{block}{To managers - the project should use Git, because:}
+\begin{itemize}
+ \item It is free and open Source (maintenance)
+ \item Most advanced VCS out there, check list of projects using it.
+\end{itemize}
+\end{block}
+
+\begin{block}{To programmers - use it to track your code, because:}
+\begin{itemize}
+ \item Fast with advanced tools.
+ \item Collaboration and branching and merging are very easy.
+ \item Huge community, lots of online help and examples.
+\end{itemize}
+\end{block}
+
+\begin{block}{To everyone - use it to track your content, because:}
+\begin{itemize}
+ \item Very easy to use to backup your text files (documents and configuration files).
+ \item Lots of convenient services (github, gitourious - free online, firmware of your network attached storage)
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\begin{frame}{Thank you for your attention!}
+
+\begin{center}
+
+This presentation can be found at:
+
+\small
+\url{http://github.com/cs0rbagomba/git_p4/git_p4.pdf}
+
+\smallskip
+or
+\smallskip
+
+\includegraphics[height=3.3cm]{barcode.png}
+
+\smallskip
+
+Any questions?
+\end{center}
+
+\end{frame}
+
+%----------- slide --------------------------------------------------%
+
+\end{document}
